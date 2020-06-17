@@ -2,14 +2,18 @@ import React from 'react';
 import Todo from './Todo';
 
 const TodoList = (props) => {
-	return (
+  const {
+    todos,
+    dispatch
+  } = props;
+
+const toggleTodo = (id) => dispatch({ type: 'MARK_COMPLETE', payload: id });
+
+  return (
 		<div className='todo-list'>
-			{props.todos.map((todo) => (
-				<Todo key={todo.id} todo={todo} toggleTodo={props.toggleTodo} />
+			{todos.map((todo) => (
+				<Todo key={todo.id} todo={todo} toggleTodo={() => toggleTodo(todo.id)} />
 			))}
-			<button className='clear-btn' onClick={props.clearCompleted}>
-				Clear Completed
-			</button>
 		</div>
 	);
 };

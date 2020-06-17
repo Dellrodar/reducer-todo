@@ -1,8 +1,10 @@
-export const todos = {
+export const todos = [
+  {
   item: 'Learn about reducers',
   completed: false,
   id: Date.now()
-};
+},
+];
 
 export const todoReducer = (state, action) => {
   switch(action.type){
@@ -12,11 +14,10 @@ export const todoReducer = (state, action) => {
       return state.map((item) =>
       item.id === action.payload
         ? { ...item, completed: !item.completed }
-        : item);
+        : item
+    );
     case 'CLEAR_COMPLETE':
-      return state.filter((todo) => {
-        return todo.completed === "true" ? {...todo, item: " "} : todo;
-      });
+      return state.filter((todo) => !todo.completed);
     default:
       return state;
   }
